@@ -27,11 +27,6 @@ $('.four-oh-four-form').on('submit', function(e){
     resetFormAbout();
   	};
 
-  	if (val === 'home'){
-    showHome();
-  	}else {
-    resetFormHome();
-  	};
 });
 
 
@@ -71,23 +66,6 @@ function resetFormAbout(withKittensAbout){
   ), {duration: 100}
 }
 
-function resetFormHome(withKittensHome){
-  var message = "Sorry Home failed"
-  var input = $('.404-input');
-
-  if (withKittens){
-    $('.kittens').removeClass('kittens');
-    message = "Do you like our Home?"
-  }
-
-  $('.new-output').removeClass('new-output');
-  input.val('');
-  $('.terminal').append('<p class="prompt">' + message + '</p><p class="prompt output new-output"></p>');
-
-  $('.new-output').velocity(
-    'scroll'
-  ), {duration: 100}
-}
 
 	function showKittens(){
 		$('.terminal').append("<div class='kittens'>"+
@@ -128,7 +106,7 @@ function resetFormHome(withKittensHome){
 
 			$.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=porn', function(result){
 				gif = result.data.image_url;
-				$('.terminal').append('<img class="kitten-gif" src="' + gif + '"">');
+				$('.display-container').append('<img class="kitten-gif" src="' + gif + '"">');
 				resetForm(true);
 			});
 		}, (lines.length * 100) + 1000);
@@ -140,6 +118,7 @@ function resetFormHome(withKittensHome){
 
 	function showAbout(){
 		$('.terminal').append("<div class='kittens'>"+
+								 "<p class='prompt'>about</p>" +
 								 "<p class='prompt'>	                             ,----,         ,----,                                          ,---,</p>" +
 								 "<p class='prompt'>       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |</p>" +
 								 "<p class='prompt'>   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :</p>" +
@@ -177,7 +156,7 @@ function resetFormHome(withKittensHome){
 
 			$.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=fetish', function(result){
 				gif = result.data.image_url;
-				$('.terminal').append('<img class="kitten-gif" src="' + gif + '"">');
+				$('.display-container').append('<img class="kitten-gif" src="images/1.jpg"">');
 				resetForm(true);
 			});
 		}, (lines.length * 100) + 1000);
@@ -186,51 +165,7 @@ function resetFormHome(withKittensHome){
 
 
 
-	function showHome(){
-		$('.terminal').append("<div class='kittens'>"+
-								 "<p class='prompt'>	                             ,----,         ,----,                                          ,---,</p>" +
-								 "<p class='prompt'>       ,--.                ,/   .`|       ,/   .`|                     ,--.              ,`--.' |</p>" +
-								 "<p class='prompt'>   ,--/  /|    ,---,     ,`   .'  :     ,`   .'  :     ,---,.        ,--.'|   .--.--.    |   :  :</p>" +
-								 "<p class='prompt'>,---,': / ' ,`--.' |   ;    ;     /   ;    ;     /   ,'  .' |    ,--,:  : |  /  /    '.  '   '  ;</p>" +
-								 "<p class='prompt'>:   : '/ /  |   :  : .'___,/    ,'  .'___,/    ,'  ,---.'   | ,`--.'`|  ' : |  :  /`. /  |   |  |</p>" +
-								 "<p class='prompt'>|   '   ,   :   |  ' |    :     |   |    :     |   |   |   .' |   :  :  | | ;  |  |--`   '   :  ;</p>" +
-								 "<p class='prompt'>'   |  /    |   :  | ;    |.';  ;   ;    |.';  ;   :   :  |-, :   |   \\ | : |  :  ;_     |   |  '</p>" +
-								 "<p class='prompt'>|   ;  ;    '   '  ; `----'  |  |   `----'  |  |   :   |  ;/| |   : '  '; |  \\  \\    `.  '   :  |</p>" +
-								 "<p class='prompt'>:   '   \\   |   |  |     '   :  ;       '   :  ;   |   :   .' '   ' ;.    ;   `----.   \\ ;   |  ;</p>" +
-								 "<p class='prompt'>'   : |.  \\ |   |  '     '   :  |       '   :  |   '   :  ;/| '   : |  ; .'  /  /`--'  /  `--..`;  </p>" +
-								 "<p class='prompt'>|   | '_\\.' '   :  |     ;   |.'        ;   |.'    |   |    \\ |   | '`--'   '--'.     /  .--,_   </p>" +
-								 "<p class='prompt'>'   : |     ;   |.'      '---'          '---'      |   :   .' '   : |         `--'---'   |    |`.  </p>" +
-								 "<p class='prompt'>;   |,'     '---'                                  |   | ,'   ;   |.'                    `-- -`, ; </p>" +
-								 "<p class='prompt'>'---'                                              `----'     '---'                        '---`'</p>" +
-								 "<p class='prompt'>                                                              </p></div>");
-
-		
-		var lines = $('.kittens p');
-		$.each(lines, function(index, line){
-			setTimeout(function(){
-				$(line).css({
-					"opacity": 1
-				});
-
-				textEffect($(line))
-			}, index * 100);
-		});
-
-		$('.new-output').velocity(
-			'scroll'
-		), {duration: 100}
-
-		setTimeout(function(){
-			var gif;
-
-			$.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=smoke', function(result){
-				gif = result.data.image_url;
-				$('.terminal').append('<img class="kitten-gif" src="' + gif + '"">');
-				resetForm(true);
-			});
-		}, (lines.length * 100) + 1000);
-	}
-
+	
 
 	function textEffect(line){
 		var alpha = [';', '.', ',', ':', ';', '~', '`'];
