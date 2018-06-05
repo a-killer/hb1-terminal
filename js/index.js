@@ -15,17 +15,33 @@ $('.four-oh-four-form').on('submit', function(e){
   var val = $(this).children($('.404-input')).val().toLowerCase();
   var href;
 
-	if (val === 'work'){
-    showKittens();
-  	}else {
-    resetForm();
-  	};
+	// if (val === 'work'){
+ //    showKittens();
+ //  	}else {
+ //    resetForm();
+ //  	};
 
-  	if (val === 'about'){
-    showAbout();
-  	}else {
-    resetFormAbout();
-  	};
+ //  	if (val === 'about'){
+ //    showAbout();
+ //  	}else {
+ //    resetFormAbout();
+ //  	};
+
+  	switch(val)  {
+  	case 'work':
+  		showKittens();
+  		break;
+  	case 'about':
+  		showAbout();
+  		break;
+  	case 'fuck':
+  	case 'shit':
+  		showMessage("Dont be rude");
+  		break;	
+  	default:
+  		resetForm();
+  		break;
+  	}
 
 });
 
@@ -52,7 +68,7 @@ function resetFormAbout(withKittensAbout){
   var message = "Sorry About failed."
   var input = $('.404-input');
 
-  if (withKittens){
+  if (withKittensAbout){
     $('.kittens').removeClass('kittens');
     message = "Do you like our About?"
   }
@@ -100,6 +116,7 @@ function resetFormAbout(withKittensAbout){
 		$('.new-output').velocity(
 			'scroll'
 		), {duration: 100}
+
 
 		setTimeout(function(){
 			var gif;
@@ -157,8 +174,36 @@ function resetFormAbout(withKittensAbout){
 			$.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=fetish', function(result){
 				gif = result.data.image_url;
 				$('.display-container').append('<img class="kitten-gif" src="images/1.jpg">');
-				resetForm(true);
+				resetFormAbout(true);
 			});
+		}, (lines.length * 100) + 1000);
+	}
+
+
+	function showMessage(message){
+		$('.terminal').append("<div class='kittens'>"+
+								 "<p class='prompt'>" + message + "</p>" +
+								 
+								 "<p class='prompt'>                                                              </p></div>");
+
+		
+		var lines = $('.kittens p');
+		$.each(lines, function(index, line){
+			setTimeout(function(){
+				$(line).css({
+					"opacity": 1
+				});
+
+				textEffect($(line))
+			}, index * 100);
+		});
+
+		$('.new-output').velocity(
+			'scroll'
+		), {duration: 100}
+
+		setTimeout(function(){
+			resetFormAbout(true); // change this for the rude message promt
 		}, (lines.length * 100) + 1000);
 	}
 
