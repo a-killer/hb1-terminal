@@ -35,6 +35,7 @@ body {
   background-color: black;
   padding: 0;
   margin: 0;
+  font-size:14px;
 }
 
 .four-oh-four {
@@ -65,17 +66,18 @@ body {
   padding: 2rem;
 }
 .terminal .prompt {
-  color: rgb(0,255,0);
   display: block;
   width:100%;
   font-family: 'AndaleMono', monospace;
+  /*font-family: 'Monaco', monospace;*/
   font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.9em;
-  letter-spacing: 0.15em;
+  font-size: 0.9rem;
   white-space: pre-wrap;
+  color: rgb(0,255,0);
+  /*
   text-shadow: 0 0 2px rgba(31, 240, 66, 0.75);
-  line-height: 24px;
+  */
+  line-height: 9px;
   margin-bottom: 0.75em;
 }
 .terminal .prompt:before {
@@ -91,7 +93,7 @@ body {
   width: 0.75em;
   height: 1em;
   margin-left: 5px;
-  background: #99DBD7;
+  background: rgb(0,194,0);
   box-shadow: 1px 1px 1px rgba(31, 240, 66, 0.65), -1px -1px 1px rgba(31, 240, 66, 0.65), 1px -1px 1px rgba(31, 240, 66, 0.65), -1px 1px 1px rgba(31, 240, 66, 0.65);
   -webkit-animation: cursor-blink 1.25s steps(1) infinite;
   -moz-animation: cursor-blink 1.25s steps(1) infinite;
@@ -101,6 +103,7 @@ body {
 
 .display-container {
   position: fixed;
+  display: block;
   top: 0;
   left: 0;
   width: 100%;
@@ -110,6 +113,7 @@ body {
 
 .display-container img {
   object-fit: cover;
+  vertical-align: bottom;
 }
 
 .kittens p {
@@ -128,4 +132,37 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+
+.prompt.red,
+.prompt span.red {
+  color:rgb(201,27,0);
+  text-shadow: 0 0 2px rgba(255,27,0, 0.75);
+}
+
+.prompt.green,
+.prompt span.green {
+  color: rgb(0,194,0);
+  text-shadow: 0 0 2px rgba(31, 240, 66, 0.75);
+}
+
+.prompt.white,
+.prompt span.white {
+  color: rgb(255,255,255);
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.50);
+}
+
+.prompt.cyan,
+.prompt span.cyan {
+  color: rgb(0,197,199);
+  text-shadow: 0 0 2px rgba(0,220,199, 0.75);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.spaced {
+  letter-spacing: 0.25em;
 }

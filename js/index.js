@@ -156,7 +156,7 @@ function resetFormAbout(withKittensAbout){
 
 			$.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=fetish', function(result){
 				gif = result.data.image_url;
-				$('.display-container').append('<img class="kitten-gif" src="images/1.jpg"">');
+				$('.display-container').append('<img class="kitten-gif" src="images/1.jpg">');
 				resetForm(true);
 			});
 		}, (lines.length * 100) + 1000);
